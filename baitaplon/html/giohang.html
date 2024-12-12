@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Giỏ Hàng</title>
+    <link href="../css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        body {
+            background-color: #f8f9fa;
+        }
+        h1 {
+            color: #007bff;
+        }
+        .list-group-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background-color: #ffffff;
+            border: 1px solid #dee2e6;
+        }
+        .item-quantity {
+            margin-right: 10px;
+        }
+        .btn-danger {
+            background-color: #dc3545;
+            border-color: #dc3545;
+        }
+        .btn-danger:hover {
+            background-color: #c82333;
+            border-color: #bd2130;
+        }
+        #cart-total h4 {
+            color: #28a745;
+        }
+    </style>
+</head>
+<body>
+    <div class="container my-5">
+        <h1 class="text-center">Giỏ Hàng Của Bạn</h1>
+
+        <div id="cart-items" class="my-4"></div>
+        <div id="cart-total" class="my-3 text-right"></div>
+        <a href="phukien.html" class="btn btn-primary">Tiếp tục mua sắm</a>
+        <a href="muahang.html" class="btn btn-primary">Thanh toán</a>
+    </div>
+
+    <script src="../js/jquery-3.7.1.min.js"></script>
+    <script>
+        $(document).ready(function(){
+            // Hiển thị các sản phẩm trong giỏ hàng
+            function displayCart() {
+                let cart = JSON.parse(localStorage.getItem("cart")) || [];
+                let cartItems = $("#cart-items");
+                let cartTotal = $("#cart-total");
+                
+                if (cart.length === 0) {
+                    cartItems.html("<p class='text-center'>Giỏ hàng của bạn đang trống.</p>");
+                    cartTotal.html("");
+                } else {
+                    let itemList = '<ul class="list-group">'; // Bắt đầu danh sách
+                    let total = 0;
+                    
+                    cart.forEach(item => {
+                        let itemTotal = item.quantity * item.price;
+                        total += itemTotal;
+
+                        itemList += `<li class="list-group-item">
+                            <span>${item.name} -</span>
+                            <input type="number" class="item-quantity" data-product="${item.name}" value="${item.quantity}" min="1" style="width: 50px;">
+                            <span>x ${item.price.toLocaleString()}₫ = ${itemTotal.toLocaleString()}₫</span>
+                            <button class="btn btn-danger btn-sm remove-item" data-product="${item.name}">Xóa</button>
+                        </li>`;
+                    });
+
+                    itemList += '</ul>'; // Kết thúc danh sách
+                    cartItems.html(itemList);
+
+                    cartTotal.html(`<h4>Tổng cộng: ${total.toLocaleString()}₫</h4>`);
+                }
+            }
+
+            // Cập nhật số lượng khi thay đổi input
+            $(document).on("change", ".item-quantity", function(){
+                let product = $(this).data("product");
+                let newQuantity = parseInt($(this).val());
+
+                if (newQuantity > 0) {
+                    let cart = JSON.parse(localStorage.getItem("cart"));
+                    cart.forEach(item => {
+                        if (item.name === product) {
+                            item.quantity = newQuantity;
+                        }
+                    });
+                    localStorage.setItem("cart", JSON.stringify(cart));
+                    displayCart();
+                } else {
+                    alert("Số lượng phải lớn hơn 0.");
+                    displayCart();
+                }
+            });
+
+            // Xóa sản phẩm khỏi giỏ hàng
+            $(document).on("click", ".remove-item", function(){
+                let product = $(this).data("product");
+                let cart = JSON.parse(localStorage.getItem("cart"));
+                cart = cart.filter(item => item.name !== product);
+                localStorage.setItem("cart", JSON.stringify(cart));
+                displayCart();
+                alert("Đã xóa sản phẩm khỏi giỏ hàng!");
+            });
+
+            // Hiển thị giỏ hàng ngay khi trang được tải
+            displayCart();
+        });
+    </script>
+</body>
+</html>

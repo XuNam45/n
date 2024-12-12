@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Phương Thức Thanh Toán</title>
+    <link href="../css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        body {
+            background-color: #f8f9fa;
+        }
+        h1 {
+            color: #007bff;
+        }
+        .form-check {
+            margin-bottom: 10px;
+        }
+        #success-message {
+            display: none;
+            margin-top: 20px;
+            padding: 15px;
+            border: 1px solid #28a745;
+            background-color: #d4edda;
+            color: #155724;
+            border-radius: 5px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container my-5">
+        <h1 class="text-center">Phương Thức Thanh Toán</h1>
+
+        <!-- Phần chọn phương thức thanh toán -->
+        <div class="my-4">
+            <h4>Chọn phương thức thanh toán</h4>
+            <div class="form-check">
+                <input class="form-check-input" type="radio" name="paymentMethod" id="cashPayment" value="cash">
+                <label class="form-check-label" for="cashPayment">
+                    Thanh toán tiền mặt khi nhận hàng
+                </label>
+            </div>
+            <div class="form-check">
+                <input class="form-check-input" type="radio" name="paymentMethod" id="bankTransfer" value="bank">
+                <label class="form-check-label" for="bankTransfer">
+                    Chuyển khoản qua ngân hàng
+                </label>
+            </div>
+            <div class="form-check">
+                <input class="form-check-input" type="radio" name="paymentMethod" id="onlinePayment" value="online">
+                <label class="form-check-label" for="onlinePayment">
+                    Thanh toán qua thẻ tín dụng/ATM
+                </label>
+            </div>
+            <button id="confirm-payment" class="btn btn-success mt-3">Xác nhận thanh toán</button>
+            <div id="success-message">Thanh toán thành công! Cảm ơn bạn đã mua hàng.</div>
+        </div>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script>
+        $(document).ready(function() {
+            // Xử lý khi nhấn nút Xác nhận thanh toán
+            $("#confirm-payment").click(function() {
+                let selectedMethod = $("input[name='paymentMethod']:checked").val();
+
+                if (!selectedMethod) {
+                    alert("Vui lòng chọn phương thức thanh toán.");
+                    return;
+                }
+
+                // Hiển thị thông báo thành công
+                $("#success-message").fadeIn().text("Thanh toán thành công bằng phương thức: " + 
+                    (selectedMethod === "cash" ? "Tiền mặt" : 
+                    selectedMethod === "bank" ? "Chuyển khoản" : "Thẻ tín dụng/ATM"));
+
+                // Ẩn thông báo sau 5 giây
+                setTimeout(function() {
+                    $("#success-message").fadeOut();
+                }, 5000);
+            });
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,79 @@
+/* trangchu.css */
+
+/* Reset margin và padding cho tất cả các phần tử */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* Thiết lập kiểu cho body */
+body {
+    font-family: Arial, sans-serif;
+    line-height: 1.6;
+}
+
+/* Header */
+header {
+    position: relative;
+}
+
+/* Navbar */
+.navbar {
+    background-color: #343a40; /* Màu nền cho navbar */
+}
+
+.nav-link {
+    color: #ffffff; /* Màu chữ cho các liên kết */
+}
+
+.nav-link:hover {
+    color: #f8f9fa; /* Màu chữ khi hover */
+}
+
+.navbar-brand {
+    font-size: 1.5rem; /* Kích thước chữ cho brand */
+}
+
+/* Banner */
+.banner {
+    margin-top: 20px;
+}
+
+.carousel-item img {
+    height: 400px; /* Chiều cao cho hình ảnh banner */
+    object-fit: cover; /* Giữ tỷ lệ hình ảnh */
+}
+
+/* Danh Mục Sản Phẩm */
+.container {
+    margin-top: 40px; /* Khoảng cách trên của phần sản phẩm */
+}
+
+.card {
+    border: none; /* Không có viền cho thẻ sản phẩm */
+    transition: transform 0.3s; /* Hiệu ứng khi hover */
+}
+
+.card:hover {
+    transform: scale(1.05); /* Phóng to khi hover */
+}
+
+.card-img-top {
+    height: 200px; /* Chiều cao cho hình ảnh sản phẩm */
+    object-fit: cover; /* Giữ tỷ lệ hình ảnh */
+}
+
+/* Footer */
+footer {
+    background-color: #343a40; /* Màu nền cho footer */
+}
+
+.social-links a {
+    margin: 0 10px; /* Khoảng cách giữa các liên kết xã hội */
+    text-decoration: none; /* Bỏ gạch chân cho liên kết */
+}
+
+.social-links a:hover {
+    text-decoration: underline; /* Gạch chân khi hover */
+}

@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Thông tin về Thảm Lót Sàn Ô Tô Mitsubishi Xpander AT Premium 2024.">
+    <title>Thảm Lót Sàn Ô Tô Mitsubishi Xpander AT Premium 2024</title>
+    
+    <!-- Bootstrap CSS -->
+    <link href="../css/bootstrap.min.css" rel="stylesheet">
+    
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+    <!-- Header -->
+    <header class="bg-dark text-white p-3">
+        <div class="container">
+            <h1 class="text-center">Thảm Lót Sàn Ô Tô Mitsubishi Xpander AT Premium 2024</h1>
+        </div>
+    </header>
+
+    <!-- Thông tin sản phẩm -->
+    <section class="container my-5">
+        <div class="row">
+            <div class="col-md-6">
+                <img src="../img/phukien1.jpg" class="img-fluid" alt="Thảm Lót Sàn Ô Tô Mitsubishi Xpander AT Premium 2024">
+            </div>
+            <div class="col-md-6">
+                <h2>Thông Số Kỹ Thuật</h2>
+                <ul>
+                    <li><strong>Chất liệu:</strong> Cao su cao cấp</li>
+                    <li><strong>Kích thước:</strong> Phù hợp cho Mitsubishi Xpander AT</li>
+                    <li><strong>Màu sắc:</strong> Đen</li>
+                    <li><strong>Bảo hành:</strong> 12 tháng</li>
+                </ul>
+            </div>
+        </div>
+        
+        <h2>Mô Tả Sản Phẩm</h2>
+        <p>Thảm lót sàn ô tô Mitsubishi Xpander AT Premium 2024 được làm từ chất liệu cao su cao cấp, giúp bảo vệ sàn xe khỏi bụi bẩn và nước. Với thiết kế vừa vặn, sản phẩm sẽ mang lại sự thoải mái và an toàn cho người sử dụng.</p>
+
+        <h2>Giá Bán</h2>
+        <p><strong>Giá: 1.200.000 VNĐ</strong></p>
+
+        <div class="text-center mt-4">
+            <!-- Nút thêm vào giỏ hàng -->
+            <button id="giohang.html" class="btn btn-success">Thêm vào giỏ hàng</button>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-dark text-white text-center p-4">
+        <p>&copy; 2024 Ô Tô & Phụ Kiện. All Rights Reserved.</p>
+        <div class="social-links">
+            <a href="#" class="text-white me-2">Facebook</a>
+            <a href="#" class="text-white me-2">Instagram</a>
+            <a href="#" class="text-white">YouTube</a>
+        </div>
+    </footer>
+
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+
+    <!-- jQuery -->
+    <script src="../js/jquery-3.7.1.min.js"></script>
+    <script>
+        $(document).ready(function(){
+            // Thêm sản phẩm vào giỏ hàng
+            $("#add-to-cart").click(function(){
+                let name = "Thảm Lót Sàn Ô Tô Mitsubishi Xpander AT Premium 2024";
+                let price = 1200000;  // Giá sản phẩm
+                let quantity = 1;  // Số lượng mặc định là 1
+
+                // Kiểm tra xem giỏ hàng đã tồn tại trong localStorage chưa
+                let cart = JSON.parse(localStorage.getItem("cart")) || [];
+
+                // Kiểm tra xem sản phẩm đã có trong giỏ hàng chưa
+                let existingItem = cart.find(item => item.name === name);
+                if (existingItem) {
+                    // Nếu sản phẩm đã có, tăng số lượng lên 1
+                    existingItem.quantity += quantity;
+                } else {
+                    // Nếu chưa có, thêm sản phẩm mới vào giỏ hàng
+                    cart.push({ name, price, quantity });
+                }
+
+                // Lưu giỏ hàng vào localStorage
+                localStorage.setItem("cart", JSON.stringify(cart));
+
+                // Thông báo sản phẩm đã được thêm vào giỏ hàng
+                alert("Sản phẩm đã được thêm vào giỏ hàng!");
+            });
+        });
+    </script>
+</body>
+</html>
